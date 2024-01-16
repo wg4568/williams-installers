@@ -1,0 +1,22 @@
+#! /bin/bash
+
+PACKAGES="
+    bridge-utils
+    cpu-checker
+    libvirt-clients
+    libvirt-daemon
+    qemu
+    qemu-kvm
+    virt-manager
+"
+
+if [[ $1 = "remove" ]]; then
+    echo $PACKAGES | xargs -d '\n' sudo apt-get -y remove
+    echo "Done. Reboot recommended"
+    exit 0
+fi
+
+echo $PACKAGES | xargs -d '\n' sudo apt-get -y install
+kvm-ok
+
+echo "Done. Reboot recommended"

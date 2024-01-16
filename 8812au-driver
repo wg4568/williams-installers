@@ -1,0 +1,16 @@
+#! /bin/bash
+
+if [[ $1 = "remove" ]]; then
+    cd ~/projects/8812au-20210629
+    sudo ./remove-driver.sh
+    rm -rf ~/projects/8812au-20210629
+    echo "Done. Reboot recommended"
+    exit 0
+fi
+
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install build-essentials dkms git iw -y
+git clone https://github.com/morrownr/8812au-20210629.git ~/software/8812au-20210629
+cd ~/projects/8812au-20210629
+sudo ./install-driver.sh
+echo "Done. Reboot recommended"
