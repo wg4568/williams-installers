@@ -1,0 +1,11 @@
+HTTP/2 302 
+content-type: text/html;charset=utf-8
+location: https://secure.chamsys.co.uk/downloads/v1_9_4_7/magicq_ubuntu_v1_9_4_7.deb
+date: Tue, 16 Jan 2024 18:29:07 GMT
+server: Apache
+x-powered-by: PHP/5.4.45
+cache-control: no-store, no-cache, must-revalidate
+expires: Tue, 16 Jan 2024 18:29:07 GMT
+set-cookie: PHPSESSID=a97c1ec86e31064ea4fb31b5d48e0f26; path=/; domain=secure.chamsys.co.uk; secure
+last-modified: Tue, 16 Jan 2024 18:29:07 GMT
+

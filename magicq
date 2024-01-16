@@ -1,0 +1,22 @@
+#! /bin/bash
+
+if [[ $1 = "remove" ]]; then
+    sudo apt-get purge magicq -y
+    echo "Done."
+    exit 0
+fi
+
+base_url="https://secure.chamsys.co.uk/bugtracker/mc_software_download.php"
+software="magicq"
+platform="linux64"
+version="stable"
+email="william@madebycounter.com"
+
+url=$(curl -s -I "$base_url?software=$software&platform=$platform&version=$version&email=$email" | grep -Fi location | sed 's/location: //g' | tr -d '\r')
+source ~/.config/user-dirs.dirs
+
+output=$XDG_DOWNLOAD_DIR/$(basename $url)
+wget -c $url -O $output
+sudo dpkg -i $output
+
+echo "Done."
