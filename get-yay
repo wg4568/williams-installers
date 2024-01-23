@@ -1,0 +1,14 @@
+#! /bin/bash
+
+if [[ $1 = "remove" ]]; then
+    sudo pacman -R yay-bin
+    echo "Done."
+    exit 0
+fi
+
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay-bin.git ~/software/yay-bin
+cd ~/software/yay-bin
+makepkg -si
+
+echo "Done."
