@@ -1,22 +1,14 @@
 #! /bin/bash
 
-PACKAGES="
-    bridge-utils
-    cpu-checker
-    libvirt-clients
-    libvirt-daemon
-    qemu
-    qemu-kvm
-    virt-manager
-"
+sudo pacman -S qemu-full virt-manager virt-viewer dnsmasq bridge-utils libguestfs ebtables vde2 openbsd-netcat
+sudo systemctl start libvirtd.service
+sudo systemctl enable libvirtd.service
+sudo systemctl status libvirtd.service
 
-if [[ $1 = "remove" ]]; then
-    echo $PACKAGES | xargs -d '\n' sudo apt-get -y remove
-    echo "Done. Reboot recommended"
-    exit 0
-fi
+echo 'unix_sock_group = "libvirt"' | sudo tee -a /etc/libvirt/libvirtd.conf
+echo 'unix_sock_rw_perms = "0770"' | sudo tee -a /etc/libvirt/libvirtd.conf
 
-echo $PACKAGES | xargs -d '\n' sudo apt-get -y install
-kvm-ok
+sudo usermod -aG libvirt $USER
+sudo systemctl restart libvirtd.service
 
-echo "Done. Reboot recommended"
+echo "Done."

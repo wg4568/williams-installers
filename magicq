@@ -17,6 +17,8 @@ source ~/.config/user-dirs.dirs
 
 output=$XDG_DOWNLOAD_DIR/$(basename $url)
 wget -c $url -O $output
+
+debtap
 sudo dpkg -i $output
 
 echo "Done."
